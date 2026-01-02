@@ -51,9 +51,26 @@ for i in range(WINDOW, min(len(frames)-WINDOW, len(os.listdir(FLOW_DIR)))):
     # Take middle frame warp
     warp = pred[0, :, WINDOW].permute(1,2,0).cpu().numpy()
 
+    # --- RESOLUTION ALIGNMENT FIX ---
+
+    h_flow, w_flow = warp.shape[:2]
+    h_frame, w_frame = H, W
+
+    scale_x = w_frame / w_flow
+    scale_y = h_frame / h_flow
+
+    warp_resized = cv2.resize(
+        warp,
+        (w_frame, h_frame),
+        interpolation=cv2.INTER_LINEAR
+    )
+
+    warp_resized[..., 0] *= scale_x
+    warp_resized[..., 1] *= scale_y
+
     grid_x, grid_y = np.meshgrid(np.arange(W), np.arange(H))
-    map_x = (grid_x + warp[..., 0]).astype(np.float32)
-    map_y = (grid_y + warp[..., 1]).astype(np.float32)
+    map_x = (grid_x + warp_resized[..., 0]).astype(np.float32)
+    map_y = (grid_y + warp_resized[..., 1]).astype(np.float32)
 
     stabilized = cv2.remap(
         frames[i],
