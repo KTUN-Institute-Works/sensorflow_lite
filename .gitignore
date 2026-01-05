@@ -1,2 +1,7 @@
 .venv/
 .idea/
+data/frames/
+data/videos/
+flows
+flows_inpainted
+masks
