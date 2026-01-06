@@ -40,7 +40,7 @@ def load_raft(weights, device):
 
 
 def main():
-    video_path = "data/videos/input.mp4"
+    video_path = "data/videos/input.mov"
     frame_dir = "data/frames"
     flow_dir = "flows"
     os.makedirs(flow_dir, exist_ok=True)

@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from models.stabilization_net import StabilizationNet
 
-VIDEO_PATH = "data/videos/input.mp4"
+VIDEO_PATH = "data/videos/input.mov"
 FLOW_DIR = "flows_inpainted"
 OUT_DIR = "stabilized_frames"
 WINDOW = 5

@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 STAB_DIR = "stabilized_frames"
-VIDEO_IN = "data/videos/input.mp4"
+VIDEO_IN = "data/videos/input.mov"
 VIDEO_OUT = "output_stabilized.mp4"
 SIDE_BY_SIDE = "comparison.mp4"
 
